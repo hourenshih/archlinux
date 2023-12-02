@@ -1,0 +1,59 @@
+###設定一般使用者與開機服務
+#設定時區為台灣台北。設定硬體時鐘。
+ln -sf /usr/share/zoneinfo/Asia/Taipei /etc/localtime
+hwclock --systohc
+
+#使用VIM編輯語言檔案
+vim /etc/locale.gen
+
+#把正體中文zh_TW.UTF-8取消註解(前面去掉#字號)如下：
+zh_TW.UTF-8 UTF-8
+
+#生成語言，設定系統語言成正體中文
+locale-gen
+echo "LANG=zh_TW.UTF-8 UTF-8" >> /etc/locale.conf
+
+#給自己的主機取名為ArchLinux:
+echo "ArchLinux" >> /etc/hostname
+
+#建立host檔案。最後一行為主機名稱。
+echo "127.0.0.1 localhost" >> /etc/hosts
+echo "::1 localhost" >> /etc/hosts
+echo "127.0.1.1 ArchLinux" >> /etc/hosts
+
+#設定開機自動啟動SDDM顯示管理器、Network Manager、SSH的服務
+systemctl enable sddm.service
+systemctl enable NetworkManager.service
+systemctl enable sshd.service
+
+#更改root的密碼:
+passwd
+
+#建立一般使用者帳戶"user"(名字可自取)，將其加入users、wheel、audio、video、storage群組，並修改密碼
+useradd -m -g users -G wheel,audio,video,storage -s /bin/bash user
+passwd user
+
+#用指令編輯sudoers：vim /etc/sudoers，賦予一般使用者帳戶sudo權限
+#在"root ALL=(ALL:ALL) ALL"的下一行加入以下內容:
+user ALL=(ALL:ALL) ALL
+
+
+###安裝GRUB開機引導
+#安裝GRUB和efibootmgr套件
+pacman -S grub efibootmgr
+
+將EFI分區掛載到/boot目錄
+mount /dev/sda1 /boot
+
+
+
+
+
+
+
+
+
+
+
+
+
