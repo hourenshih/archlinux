@@ -3,5 +3,5 @@ pacman -S xorg xorg-server pipewire wireplumber pipewire-pulse intel-ucode nvtop
 pacman -S sddm plasma-meta kde-applications plasma-wayland-session packagekit-qt5
 pacman -S fcitx5-im fcitx5-chewing fcitx5-qt fcitx5-gtk fcitx5-chinese-addons
 pacman -S git openssh fakeroot base-devel
-pacman -S fish less grep nano
+pacman -S fish less grep nano wget curl
 pacman -S usbutils
