@@ -1,3 +1,4 @@
+#!/bin/bash
 pacman -S sudo networkmanager vim firefox noto-fonts-cjk noto-fonts-emoji \
 xorg xorg-server pipewire wireplumber pipewire-pulse intel-ucode nvtop \
 sddm plasma-meta kde-applications plasma-wayland-session packagekit-qt5 \
